@@ -43,8 +43,23 @@ module.exports = {
             },
             {
                 test: /\.s[ac]ss$/,
-                use: [MiniCssExtractPlugin.loader, "css-loader", 'sass-loader'], 
-             }
-        ]
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            publicPath: (resourcePath, context) => {
+                                return path.relative(path.dirname(resourcePath, context) + '/');
+                            }
+                        }
+                    },
+                    MiniCssExtractPlugin.loader, "css-loader", 'sass-loader'], 
+             },
+             {
+                    test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
+                    type: 'asset/resource',
+                    generator: {
+                        filename: 'images/[name].[contenthash:6][ext][query]'
+                    }
+                }], 
+             },
     }
-}
