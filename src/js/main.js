@@ -1,4 +1,4 @@
-import { closePopUp } from './script.js';
+import { closePopUp, openPopUp } from './script.js';
 
 import '../css/style-mobile.css';
 import '../index.html';
@@ -6,6 +6,7 @@ import '../index.html';
 
 function main() {
     closePopUp();
+    openPopUp();
 }
 
 main();
